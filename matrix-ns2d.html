@@ -1,0 +1,1693 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+	<title>SWG: Component Dependency Matrix</title>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script>
+		(function ($) {
+				$.fn.rotateTableCellContent = function (options) {
+				/*
+				Version 1.0
+				7/2011
+				Written by David Votrubec (davidjs.com) and
+				Michal Tehnik (@Mictech) for ST-Software.com
+				*/
+				
+				var cssClass = ((options) ? options.className : false) || "vertical";
+				
+				var cellsToRotate = $('.' + cssClass, this);
+				
+				var betterCells = [];
+				cellsToRotate.each(function () {
+					var cell = $(this)
+					, newText = cell.text()
+					, height = cell.height()
+					, width = cell.width()
+					, newDiv = $('<div>', { height: width, width: height })
+					, newInnerDiv = $('<div>', { text: newText, 'class': 'rotated' });
+				
+					newInnerDiv.css('-webkit-transform-origin', (width / 2) + 'px ' + (width / 2) + 'px');
+					newInnerDiv.css('-moz-transform-origin', (width / 2) + 'px ' + (width / 2) + 'px');
+					newDiv.append(newInnerDiv);
+					
+					betterCells.push(newDiv);
+				});
+			
+				cellsToRotate.each(function (i) {
+					$(this).html(betterCells[i]);
+				});
+			};
+		})(jQuery);
+		
+		$(document).ready(function(){
+			$('.matrix').rotateTableCellContent();
+		});
+	</script>
+	<script>
+		(function ($) {
+			$.fn.doLegend = function (klazz, icon) {
+				$('td[class=' + klazz + ']').each(function() {
+					$(this).html('<i class="' + icon + '"></i>');
+				})
+			}
+		})(jQuery);
+		
+		$(document).ready(function() {
+			$(document).doLegend('R', 'icon-ok');
+			$(document).doLegend('A', 'icon-plus');
+			$(document).doLegend('O', 'icon-asterisk');
+			$(document).doLegend('X', 'icon-remove');
+		});
+	</script>
+	<script>
+		// source: http://stackoverflow.com/a/11828637/431535
+		$(document).ready(function() {
+			$('td').hover(function() {
+				var t = parseInt($(this).index()) + 1;
+				$('td:nth-child(' + t + ')').addClass('highlighted');
+			},
+			function() {
+				var t = parseInt($(this).index()) + 1;
+				$('td:nth-child(' + t + ')').removeClass('highlighted');
+			})
+		});
+	</script>
+	<script type="text/javascript">
+		// source: http://stackoverflow.com/a/1041566/431535
+		function updateTableHeaders() {
+			$("div.divTableWithFloatingHeader").each(function() {
+				var originalHeaderRow = $(".tableFloatingHeaderOriginal", this);
+				var floatingHeaderRow = $(".tableFloatingHeader", this);
+				var offset = $(this).offset();
+				var scrollTop = $(window).scrollTop();
+				if ((scrollTop > offset.top) && (scrollTop < offset.top + $(this).height())) {
+					floatingHeaderRow.css("visibility", "visible");
+					floatingHeaderRow.css("top", Math.min(scrollTop - offset.top, $(this).height() - floatingHeaderRow.height()) + "px");
+
+					// Copy cell widths from original header
+					$("th", floatingHeaderRow).each(function(index) {
+						var cellWidth = $("th", originalHeaderRow).eq(index).css('width');
+						$(this).css('width', cellWidth);
+					});
+
+					// Copy row width from whole table
+					floatingHeaderRow.css("width", $(this).css("width"));
+					originalHeaderRow.css("visibility", "hidden");
+				}
+				else {
+					originalHeaderRow.css("visibility", "visible");
+					floatingHeaderRow.css("visibility", "hidden");
+					floatingHeaderRow.css("top", "0px");
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			$("table.matrix").each(function() {
+				$(this).wrap("<div class=\"divTableWithFloatingHeader\" style=\"position:relative\"></div>");
+
+				var originalHeaderRow = $("tr:first", this)
+				originalHeaderRow.before(originalHeaderRow.clone());
+				var clonedHeaderRow = $("tr:first", this)
+
+				clonedHeaderRow.addClass("tableFloatingHeader");
+				clonedHeaderRow.css("position", "absolute");
+				clonedHeaderRow.css("top", "0px");
+				clonedHeaderRow.css("left", $(this).css("margin-left"));
+				clonedHeaderRow.css("visibility", "hidden");
+
+				originalHeaderRow.addClass("tableFloatingHeaderOriginal");
+		});
+		
+			updateTableHeaders();
+			$(window).scroll(updateTableHeaders);
+			$(window).resize(updateTableHeaders);
+		});
+	</script>
+	<style type="text/css" title="currentStyle">
+		/* colors: http://colorschemedesigner.com/#2P42zm-vvz9N7 */
+		
+		/* Styles for rotateTableCellContent plugin*/
+		table div.rotated {
+		  -webkit-transform: rotate(270deg);
+		  -moz-transform: rotate(270deg);
+		  writing-mode:tb-rl;
+		  white-space: nowrap;
+		}
+
+		h1 {
+			font-family: "Lucida Sans Unicode","Lucida Grande",Sans-Serif;
+			font-size: 22px;
+			text-align: center;
+		}
+		
+		body {
+			background-color: #e7e7e7;
+		}
+
+		table {
+			white-space: nowrap;
+			background: none repeat scroll 0 0 #eeeeee;
+			font-family: "Lucida Sans Unicode","Lucida Grande",Sans-Serif;
+			font-size: 12px;
+			border-collapse: collapse;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		tr.systems:hover, .highlighted  {
+			background-color: #ffffdd;
+		}
+
+		th {
+			background: none repeat scroll 0 0 #eeeeee;
+			vertical-align: bottom;
+			border-left: 1px solid #c2c5ee;
+			border-right: 1px solid #c2c5ee;
+			color: #003399;
+			font-size: 13px;
+			font-weight: normal;
+		}
+		th.horizontal {
+			text-align: right;
+		}
+		th.referenced {
+			text-align: left;
+			color: #003399;
+			font-size: 13px;
+			font-weight: normal;
+		}
+		td, th.referenced {
+			border: 1px solid #c2c5ee;
+		}
+		td.R {
+			background-color: rgba(57, 201, 57, 0.5);
+			text-align: center;
+		}
+		td.A {
+			background-color: rgba(16, 124, 16, 0.5);
+			text-align: center;
+		}
+		td.O {
+			background-color: rgba(251, 204, 71, 0.5);
+			text-align: center;
+		}
+		td.X {
+			background-color: rgba(251, 71, 71, 0.5);
+			text-align: center;
+		}
+	</style>
+	</head>
+	<body>
+		<h1>SWG: Component Dependency Matrix</h1>
+		<table border="0" class="matrix">
+			<thead style="background-color: #eee;">
+				<tr>
+					<th style="color: rgba(0,0,0,0)">_________________________________</th>
+					<th class="vertical">Aim</th>
+					<th class="vertical">Anim</th>
+					<th class="vertical">Attached</th>
+					<th class="vertical">Bounds</th>
+					<th class="vertical">Buildable</th>
+					<th class="vertical">CameraFocus</th>
+					<th class="vertical">Critical</th>
+					<th class="vertical">EntitySpawner</th>
+					<th class="vertical">Focus</th>
+					<th class="vertical">Frozen</th>
+					<th class="vertical">Gravity</th>
+					<th class="vertical">Harvester</th>
+					<th class="vertical">Health</th>
+					<th class="vertical">HealthIndicator</th>
+					<th class="vertical">Homing</th>
+					<th class="vertical">Inbetween</th>
+					<th class="vertical">Inventory</th>
+					<th class="vertical">MouseCursor</th>
+					<th class="vertical">Payload</th>
+					<th class="vertical">Physics</th>
+					<th class="vertical">PlayerControlled</th>
+					<th class="vertical">Pos</th>
+					<th class="vertical">RespawnOnDeath</th>
+					<th class="vertical">Script</th>
+					<th class="vertical">SkulkControlled</th>
+					<th class="vertical">Terminal</th>
+					<th class="vertical">WallSensor</th>
+					<th class="vertical">Wallet</th>
+					<th class="vertical">Weapon</th>
+					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">______________</span></th>
+					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">____________________________________________________________________________________________________</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="systems">
+					<th style="padding-left: 5px; font-weight: bold; text-align: left;">api	</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">DualEntityProcessSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">PassiveSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th style="padding-left: 5px; font-weight: bold; text-align: left;">system.active	</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">AfterPhysicsSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						MapCollisionSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">AimSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">AttachmentSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">BuildableSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+												CombatSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">CameraFocusSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">CameraShakeSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">CombatSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+												BuildableSystem 
+												AttachmentSystem 
+												EntitySpawnerSystem 
+												UIStopwatchRenderSytem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">DirectorSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">EntitySpawnerSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CombatSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">GravitySystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">HarvesterSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">HomingSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">InbetweenSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">MapCollisionSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+												MapSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">MouseCursorSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">PlayerControlSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+												EntitySpawnerSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">ScriptSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">SkulkControlSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class="O"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CombatSystem 
+												AimSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">TerminalSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">WallSensorSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						MapSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">WeaponSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="O"></td>
+					<td class="R"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+												AfterPhysicsSystem 
+												AttachmentSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th style="padding-left: 5px; font-weight: bold; text-align: left;">system.collide	</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">BulletCollisionSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraShakeSystem 
+												CombatSystem 
+												EntitySpawnerSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th style="padding-left: 5px; font-weight: bold; text-align: left;">system.passive	</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">CameraSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">MapSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						EntitySpawnerSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th style="padding-left: 5px; font-weight: bold; text-align: left;">system.render	</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">AnimRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">CostRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">DialogRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">HealthRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">UIAlertActiveSpawnerSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">UIAlertBuildableUnderAttack
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+												CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">UIAlertTechpointUnderAttack
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DialogRenderSystem 
+												CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">UIRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">UIStageRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DirectorSystem 
+												CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">UIStopwatchRenderSytem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						DirectorSystem 
+												PlayerControlSystem 
+												UIStageRenderSystem 
+												CameraSystem 
+											</th>
+				</tr>
+			<tbody>
+		</table>
+		<table border="0" class="matrix" style="padding: 5px">
+			<tr class="systems">
+				<th class="horizontal" style="padding-right: 10px;">Required</th>
+				<td class="R" style="width: 50px"></td>
+			</tr>
+			<tr class="systems">
+				<th class="horizontal" style="padding-right: 10px;">Match one</th>
+				<td class="A"></td>
+			</tr>
+			<tr class="systems">
+				<th class="horizontal" style="padding-right: 10px;">Referenced</th>
+				<td class="O"></td>
+			</tr>
+			<tr class="systems">
+				<th class="horizontal" style="padding-right: 10px;">Excluded</th>
+				<td class="X"></td>
+			</tr>
+		</table>
+	</body>
+</html>
