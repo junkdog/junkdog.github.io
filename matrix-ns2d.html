@@ -237,8 +237,8 @@
 					<th class="vertical">WallSensor</th>
 					<th class="vertical">Wallet</th>
 					<th class="vertical">Weapon</th>
-					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">______________</span></th>
-					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">____________________________________________________________________________________________________</span></th>
+					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">__________________________</span></th>
+					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">_________________________________________________________________________________________________________________________________</span></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -279,7 +279,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+											</th>
 					<th class="referenced">
 					</th>
 				</tr>
@@ -473,10 +474,14 @@
 					<td class="O"></td>
 					<td class="O"></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
 												CombatSystem 
+												CollisionSystem 
+												AssetSystem 
+												ParticleSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -591,13 +596,16 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
 												BuildableSystem 
 												AttachmentSystem 
 												EntitySpawnerSystem 
 												UIStopwatchRenderSytem 
+												AssetSystem 
+												ParticleSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -634,7 +642,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
 											</th>
@@ -673,7 +682,9 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+												TagManager 
+											</th>
 					<th class="referenced">
 						CombatSystem 
 											</th>
@@ -750,7 +761,8 @@
 					<td class="O"></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
 											</th>
@@ -791,7 +803,8 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
-					</th>
+						PhysicsSystem 
+											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">InbetweenSystem
@@ -867,7 +880,8 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
 												MapSystem 
 											</th>
 				</tr>
@@ -911,6 +925,83 @@
 											</th>
 				</tr>
 				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">ParticleSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						AssetSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">PhysicsSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlayerControlSystem
 						<i class="icon-gear"></i>
 					</th>
@@ -947,7 +1038,10 @@
 					</th>
 					<th class="referenced">
 						DialogRenderSystem 
+												PhysicsSystem 
 												EntitySpawnerSystem 
+												AssetSystem 
+												ParticleSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1022,9 +1116,12 @@
 					<td class=""></td>
 					<td class="O"></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+												TagManager 
+											</th>
 					<th class="referenced">
 						CombatSystem 
+												PhysicsSystem 
 												AimSystem 
 											</th>
 				</tr>
@@ -1139,11 +1236,16 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+												TagManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
 												AfterPhysicsSystem 
+												PhysicsSystem 
 												AttachmentSystem 
+												AssetSystem 
+												ParticleSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1183,15 +1285,59 @@
 					<td class="O"></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+												TagManager 
+											</th>
 					<th class="referenced">
 						CameraShakeSystem 
 												CombatSystem 
 												EntitySpawnerSystem 
+												CollisionSystem 
+												AssetSystem 
+												ParticleSystem 
 											</th>
 				</tr>
 				<tr class="systems">
 					<th style="padding-left: 5px; font-weight: bold; text-align: left;">system.passive	</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">AssetSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+						TagManager 
+											</th>
+					<th class="referenced">
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">CameraSystem
@@ -1219,6 +1365,44 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">CollisionSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1309,7 +1493,8 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1346,9 +1531,12 @@
 					<td class="O"></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
-						CameraSystem 
+						CollisionSystem 
+												AssetSystem 
+												CameraSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1385,9 +1573,11 @@
 					<td class="O"></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1426,7 +1616,88 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
+						AssetSystem 
+												CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">MapRenderSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
 						CameraSystem 
+												MapSystem 
+											</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">MapRenderSystemInFront
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+					</th>
+					<th class="referenced">
+						CameraSystem 
+												MapSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1463,9 +1734,11 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1502,9 +1775,11 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
+												AssetSystem 
 												CameraSystem 
 											</th>
 				</tr>
@@ -1542,9 +1817,11 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						DialogRenderSystem 
+												AssetSystem 
 												CameraSystem 
 											</th>
 				</tr>
@@ -1582,9 +1859,11 @@
 					<td class="O"></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1624,6 +1903,7 @@
 					</th>
 					<th class="referenced">
 						DirectorSystem 
+												AssetSystem 
 												CameraSystem 
 											</th>
 				</tr>
@@ -1666,6 +1946,7 @@
 						DirectorSystem 
 												PlayerControlSystem 
 												UIStageRenderSystem 
+												AssetSystem 
 												CameraSystem 
 											</th>
 				</tr>

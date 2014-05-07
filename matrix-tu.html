@@ -245,8 +245,8 @@
 					<th class="vertical">PlayerControlled</th>
 					<th class="vertical">Slumberer</th>
 					<th class="vertical">Pluckable</th>
-					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">____________________</span></th>
-					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">_____________________________________________________________</span></th>
+					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">_______________________________</span></th>
+					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">_______________________________________________________________________</span></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -1305,6 +1305,103 @@
 					<th style="padding-left: 5px; font-weight: bold; text-align: left;">game.manager	</th>
 				</tr>
 				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">AssetSystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+						TagManager 
+											</th>
+					<th class="referenced">
+					</th>
+				</tr>
+				<tr class="systems">
+					<th class="horizontal" style="padding-right: 5px;">EntityFactorySystem
+						<i class="icon-gear"></i>
+					</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<th class="referenced">
+						GroupManager 
+												TagManager 
+											</th>
+					<th class="referenced">
+						AbstractAssetSystem 
+												CameraSystem 
+											</th>
+				</tr>
+				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">FontManager
 						<i class="icon-gears"></i>
 					</th>
@@ -1394,7 +1491,8 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
-					</th>
+						EntityFactorySystem 
+											</th>
 				</tr>
 				<tr class="systems">
 					<th style="padding-left: 5px; font-weight: bold; text-align: left;">game.system	</th>
@@ -1587,7 +1685,9 @@
 						ServantManager 
 											</th>
 					<th class="referenced">
-					</th>
+						AssetSystem 
+												EntityFactorySystem 
+											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">DirectorSystem
@@ -1633,7 +1733,8 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
-					</th>
+						EntityFactorySystem 
+											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">IncapacitateSystem
@@ -1725,7 +1826,8 @@
 					<th class="referenced">
 					</th>
 					<th class="referenced">
-						UIWalletSystem 
+						AssetSystem 
+												UIWalletSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1822,7 +1924,9 @@
 						FontManager 
 											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
+												EntityFactorySystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1919,7 +2023,9 @@
 						FontManager 
 											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
+												EntityFactorySystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -1967,7 +2073,8 @@
 						FontManager 
 											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2015,7 +2122,9 @@
 						FontManager 
 											</th>
 					<th class="referenced">
-						CameraSystem 
+						AssetSystem 
+												CameraSystem 
+												EntityFactorySystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2063,9 +2172,11 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						CollisionSystem 
+												AssetSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2114,6 +2225,7 @@
 					<th class="referenced">
 						CameraShakeSystem 
 												CastleSystem 
+												EntityFactorySystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2158,7 +2270,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						DirectorSystem 
 												CastleSystem 
@@ -2207,11 +2320,14 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						GroupManager 
+												TagManager 
+											</th>
 					<th class="referenced">
 						CameraSystem 
 												CastleSystem 
 												UIWalletSystem 
+												EntityFactorySystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2256,7 +2372,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						CollisionSystem 
 											</th>
@@ -2303,10 +2420,12 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						UIHintSystem 
 												CollisionSystem 
+												AssetSystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2397,10 +2516,13 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						DirectorSystem 
+												AssetSystem 
 												UIWalletSystem 
+												EntityFactorySystem 
 											</th>
 				</tr>
 				<tr class="systems">
@@ -2492,7 +2614,9 @@
 					<td class=""></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						UuidEntityManager 
+												TagManager 
+											</th>
 					<th class="referenced">
 						DirectorSystem 
 												IncapacitateSystem 
@@ -2540,7 +2664,8 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 					</th>
 				</tr>
@@ -2589,9 +2714,11 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<th class="referenced">
-					</th>
+						TagManager 
+											</th>
 					<th class="referenced">
 						CollisionSystem 
+												EntityFactorySystem 
 												AnimRenderSystem 
 												PhysicsSystem 
 											</th>
