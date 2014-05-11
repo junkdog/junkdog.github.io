@@ -48,9 +48,12 @@
 	<script>
 		(function ($) {
 			$.fn.doLegend = function (klazz, icon) {
-				$('td[class=' + klazz + ']').each(function() {
+				$('td[class*=' + klazz + ']').each(function() {
 					$(this).html('<i class="' + icon + '"></i>');
 				})
+				//$('td[class=' + klazz + '.separated]').each(function() {
+				//	$(this).html('<i class="' + icon + '"></i>');
+				//})
 			}
 		})(jQuery);
 		
@@ -184,6 +187,9 @@
 		td, th.referenced {
 			border: 1px solid #c2c5ee;
 		}
+		td.separator, th.separator {
+			border-left: 3px solid #c2c5ee;
+		}
 		td.R {
 			background-color: rgba(57, 201, 57, 0.5);
 			text-align: center;
@@ -208,34 +214,38 @@
 			<thead style="background-color: #eee;">
 				<tr>
 					<th style="color: rgba(0,0,0,0)">______________________________</th>
-					<th class="vertical">Animation</th>
+					<th class="vertical separator">Animation</th>
 					<th class="vertical">CacheMarker</th>
 					<th class="vertical">DeleteMarker</th>
 					<th class="vertical">InRocket</th>
+					<th class="vertical">Inhab</th>
+					<th class="vertical">InhabFlyer</th>
+					<th class="vertical">Nova</th>
 					<th class="vertical">Paralax</th>
+					<th class="vertical">Parent</th>
 					<th class="vertical">Particle</th>
 					<th class="vertical">PhysRemovalMarker</th>
 					<th class="vertical">Physic</th>
 					<th class="vertical">Planet</th>
-					<th class="vertical">Renderable</th>
-					<th class="vertical">Rotation</th>
-					<th class="vertical">SSound</th>
-					<th class="vertical">Timer</th>
-					<th class="vertical">Transform</th>
-					<th class="vertical">Inhab</th>
-					<th class="vertical">InhabFlyer</th>
-					<th class="vertical">Nova</th>
-					<th class="vertical">Parent</th>
 					<th class="vertical">Populated</th>
 					<th class="vertical">RadialVelocity</th>
+					<th class="vertical">Renderable</th>
 					<th class="vertical">Rocket</th>
+					<th class="vertical">Rotation</th>
 					<th class="vertical">Round</th>
+					<th class="vertical">SSound</th>
 					<th class="vertical">Sealed</th>
 					<th class="vertical">Shield</th>
 					<th class="vertical">Solar</th>
+					<th class="vertical">Timer</th>
+					<th class="vertical">Transform</th>
 					<th class="vertical">Velocity</th>
-					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">___________________</span></th>
-					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">_________________________________</span></th>
+					<th class="vertical separator">GroupManager</th>
+					<th class="vertical separator"">InhabFlyingSystem</th>
+					<th class="vertical"">InhabSystem</th>
+					<th class="vertical"">PlanetSystem</th>
+					<th class="vertical"">RoundSystem</th>
+					<th class="vertical"">ScoreSystem</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -246,6 +256,10 @@
 					<th class="horizontal" style="padding-right: 5px;">ColorChooserSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -259,43 +273,32 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
 					</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">InhabCollisionSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -303,33 +306,33 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						GroupManager 
-											</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">InhabCountSys
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -345,94 +348,105 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					</th>
-					<th class="referenced">
-						ScoreSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">InhabFlyingSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="X"></td>
+					<td class="R"></td>
+					<td class="R"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class="R"></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class="O"></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
+					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
-					<th class="referenced">
-						GroupManager 
-											</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
+					<td class="R"></td>
+					<td class="O separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">InhabSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="X"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="O"></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class="R"></td>
 					<td class="R"></td>
 					<td class="X"></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="O"></td>
+					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						GroupManager 
-											</th>
-					<th class="referenced">
-						RoundSystem 
-											</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">NovaSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -440,33 +454,40 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
 					<td class="R"></td>
-					<td class="O"></td>
-					<td class="O"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class="O"></td>
-					<td class=""></td>
+					<td class="O separator"></td>
+					<td class="O separator"></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
-					<th class="referenced">
-						GroupManager 
-											</th>
-					<th class="referenced">
-						PlanetSystem 
-												InhabFlyingSystem 
-											</th>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlanetCountSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -476,9 +497,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -489,20 +508,24 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
 					</th>
-					<th class="referenced">
-						ScoreSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlanetSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -512,34 +535,32 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class="O separator"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						InhabSystem 
-												InhabFlyingSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">RadialVelocitySystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -559,28 +580,25 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
 					</th>
-					<th class="referenced">
-						RoundSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">RocketBuildSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -602,20 +620,23 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">RocketCountSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -637,16 +658,23 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					</th>
-					<th class="referenced">
-						ScoreSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">RoundSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -655,12 +683,6 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -668,22 +690,33 @@
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ScoreSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -697,7 +730,6 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -706,20 +738,23 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						GroupManager 
-											</th>
-					<th class="referenced">
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ShieldBuildSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -728,34 +763,32 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="O"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class="X"></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						GroupManager 
-											</th>
-					<th class="referenced">
-						ScoreSystem 
-											</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">SolarSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -764,12 +797,6 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -780,18 +807,26 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">TutorialSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -817,31 +852,24 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						RoundSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">VelocitySystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -854,9 +882,20 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class="R"></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -866,6 +905,10 @@
 					<th class="horizontal" style="padding-right: 5px;">MenuPlanetRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -875,33 +918,47 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
 					<td class="O"></td>
 					<td class="R"></td>
+					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlanetCircleRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -912,31 +969,22 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlanetRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -946,47 +994,34 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
 					<td class="O"></td>
 					<td class="R"></td>
+					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ShieldRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -999,11 +1034,24 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						PlanetSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th style="padding-left: 5px; font-weight: bold; text-align: left;">systems.logic	</th>
@@ -1012,9 +1060,13 @@
 					<th class="horizontal" style="padding-right: 5px;">CleanupSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class="A"></td>
+					<td class="A"></td>
 					<td class=""></td>
-					<td class="A"></td>
-					<td class="A"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
@@ -1023,6 +1075,10 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1030,31 +1086,37 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">TimerSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class="X"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1062,20 +1124,12 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 				<tr class="systems">
@@ -1085,7 +1139,14 @@
 					<th class="horizontal" style="padding-right: 5px;">AnimationSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class="R"></td>
+					<td class="R separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1097,29 +1158,26 @@
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class="O"></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">GuiSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1145,54 +1203,63 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ParticleSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class="X"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class="O"></td>
 					<td class=""></td>
-					<td class="O"></td>
-					<td class="O"></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PhysicsSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
@@ -1200,60 +1267,62 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">RenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="X"></td>
+					<td class="X"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="X"></td>
+					<td class=""></td>
+					<td class="X"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="X"></td>
-					<td class="X"></td>
-					<td class="X"></td>
-					<td class="X"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="X"></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
 					</th>
 				</tr>
 			<tbody>

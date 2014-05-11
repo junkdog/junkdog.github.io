@@ -2,7 +2,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
-	<title>Shaman's Weirding Game Core: Component Dependency Matrix</title>
+	<title>Shaman's Weirding Game: Component Dependency Matrix</title>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script>
@@ -48,9 +48,12 @@
 	<script>
 		(function ($) {
 			$.fn.doLegend = function (klazz, icon) {
-				$('td[class=' + klazz + ']').each(function() {
+				$('td[class*=' + klazz + ']').each(function() {
 					$(this).html('<i class="' + icon + '"></i>');
 				})
+				//$('td[class=' + klazz + '.separated]').each(function() {
+				//	$(this).html('<i class="' + icon + '"></i>');
+				//})
 			}
 		})(jQuery);
 		
@@ -184,6 +187,9 @@
 		td, th.referenced {
 			border: 1px solid #c2c5ee;
 		}
+		td.separator, th.separator {
+			border-left: 3px solid #c2c5ee;
+		}
 		td.R {
 			background-color: rgba(57, 201, 57, 0.5);
 			text-align: center;
@@ -203,12 +209,12 @@
 	</style>
 	</head>
 	<body>
-		<h1>Shaman's Weirding Game Core: Component Dependency Matrix</h1>
+		<h1>Shaman's Weirding Game: Component Dependency Matrix</h1>
 		<table border="0" class="matrix">
 			<thead style="background-color: #eee;">
 				<tr>
 					<th style="color: rgba(0,0,0,0)">___________________________________</th>
-					<th class="vertical">AccelerateToMaxSpeed</th>
+					<th class="vertical separator">AccelerateToMaxSpeed</th>
 					<th class="vertical">AssetReference</th>
 					<th class="vertical">BezierSpline</th>
 					<th class="vertical">ConstantGravity</th>
@@ -219,12 +225,14 @@
 					<th class="vertical">FilamentColorParameters</th>
 					<th class="vertical">GravityAffected</th>
 					<th class="vertical">Inertia</th>
+					<th class="vertical">JsonKey</th>
 					<th class="vertical">Lifetime</th>
 					<th class="vertical">MaxVelocity</th>
 					<th class="vertical">Multipliers</th>
 					<th class="vertical">Owner</th>
 					<th class="vertical">Player</th>
 					<th class="vertical">Position</th>
+					<th class="vertical">PrecomputedThrust</th>
 					<th class="vertical">Renderable</th>
 					<th class="vertical">RepulseAffected</th>
 					<th class="vertical">Repulsor</th>
@@ -236,18 +244,32 @@
 					<th class="vertical">Tint</th>
 					<th class="vertical">Velocity</th>
 					<th class="vertical">VertexIndex</th>
-					<th class="horizontal" style="text-align: center;">Managers<span style="color: rgba(0,0,0,0)">__________________________________</span></th>
-					<th class="horizontal" style="text-align: center;">Systems<span style="color: rgba(0,0,0,0)">______________________________</span></th>
+					<th class="vertical separator">EntityTracker</th>
+					<th class="vertical">PlayerInputManager</th>
+					<th class="vertical">PlayerManager</th>
+					<th class="vertical">PushPullManager</th>
+					<th class="vertical">RenderableResolverManager</th>
+					<th class="vertical">ShaderEffectsManager</th>
+					<th class="vertical">TagManager</th>
+					<th class="vertical separator"">EventSystem</th>
+					<th class="vertical"">FilamentSystem</th>
+					<th class="vertical"">GridSystem</th>
+					<th class="vertical"">NearestNeighborsRenderSystem</th>
+					<th class="vertical"">PerformanceGrapher</th>
+					<th class="vertical"">ShaderRenderSystem</th>
+					<th class="vertical"">ThrustVelocitySystem</th>
+					<th class="vertical"">VertexTintSystem</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="systems">
-					<th style="padding-left: 5px; font-weight: bold; text-align: left;">input	</th>
+					<th style="padding-left: 5px; font-weight: bold; text-align: left;">artemis	</th>
 				</tr>
 				<tr class="systems">
-					<th class="horizontal" style="padding-right: 5px;">EntityController
-						<i class="icon-coffee"></i>
+					<th class="horizontal" style="padding-right: 5px;">SlicingEntityProcessingSystem
+						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -264,8 +286,6 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="R"></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -276,12 +296,25 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						EntityTracker 
-											</th>
-					<th class="referenced">
-						EventSystem 
-											</th>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th style="padding-left: 5px; font-weight: bold; text-align: left;">manager	</th>
@@ -290,24 +323,11 @@
 					<th class="horizontal" style="padding-right: 5px;">EntityTracker
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -318,29 +338,49 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">FieldColorManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -355,16 +395,37 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						ThrustVelocitySystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">FilamentColorManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -372,17 +433,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -393,16 +444,40 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						FilamentSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlayerInputManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -431,16 +506,28 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						EventSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PlayerManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -456,8 +543,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="R"></td>
-					<td class="R"></td>
+					<td class="O"></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -469,18 +556,46 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						PlayerInputManager 
-											</th>
-					<th class="referenced">
-						GridSystem 
-												VertexTintSystem 
-											</th>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PushPullManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -493,33 +608,31 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class="O"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="O"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">RenderableResolverManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class="O"></td>
 					<td class=""></td>
-					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -540,21 +653,34 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="R"></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ShaderEffectsManager
 						<i class="icon-gears"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -575,7 +701,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -583,9 +710,21 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -595,14 +734,16 @@
 					<th class="horizontal" style="padding-right: 5px;">BezierSplineAnimator
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -623,30 +764,29 @@
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						EventSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">EmitterSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class=" separator"></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
@@ -654,23 +794,49 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class="O"></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">LifetimeSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -681,6 +847,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class="O"></td>
 					<td class=""></td>
@@ -688,6 +855,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -698,9 +866,21 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -710,6 +890,7 @@
 					<th class="horizontal" style="padding-right: 5px;">EntityCountSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -738,16 +919,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						ShaderRenderSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">EntityOutlineSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -770,21 +964,35 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">GridRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -813,17 +1021,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						PlayerManager 
-											</th>
-					<th class="referenced">
-						GridSystem 
-											</th>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">MouseInfoSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -852,15 +1072,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PerformanceGrapher
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -889,23 +1123,37 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">SplineDebugRenderer
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -926,25 +1174,39 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ThrustDebugRenderer
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -953,6 +1215,7 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class="O"></td>
 					<td class=""></td>
@@ -963,16 +1226,28 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						PushPullManager 
-											</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ThrustMapDebugRenderer2
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1001,15 +1276,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">UnitRulerRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1038,15 +1327,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">VelocityDebugRenderer
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1073,11 +1376,24 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -1087,6 +1403,7 @@
 					<th class="horizontal" style="padding-right: 5px;">EventSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1115,9 +1432,22 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -1127,15 +1457,7 @@
 					<th class="horizontal" style="padding-right: 5px;">PlayerFsmProcessor
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1149,15 +1471,37 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -1167,6 +1511,7 @@
 					<th class="horizontal" style="padding-right: 5px;">BackgroundRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1195,17 +1540,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						TagManager 
-											</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">FilamentRenderSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1218,12 +1575,11 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class="O"></td>
-					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1233,15 +1589,31 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">NearestNeighborsRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1259,6 +1631,7 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="X"></td>
@@ -1270,17 +1643,28 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<th class="referenced">
-						ShaderEffectsManager 
-											</th>
-					<th class="referenced">
-						GridSystem 
-											</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PrewarmFrame
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1309,15 +1693,29 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ShaderRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1333,9 +1731,6 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1343,19 +1738,36 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						ShaderEffectsManager 
-											</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">SpriteRenderSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1384,15 +1796,28 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">TintSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1404,13 +1829,6 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1421,15 +1839,36 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">VertexTintSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1447,6 +1886,7 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1458,11 +1898,22 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class="R"></td>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						NearestNeighborsRenderSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th style="padding-left: 5px; font-weight: bold; text-align: left;">system.spatial	</th>
@@ -1471,20 +1922,22 @@
 					<th class="horizontal" style="padding-right: 5px;">FilamentSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1499,16 +1952,28 @@
 					<td class=""></td>
 					<td class="O"></td>
 					<td class="X"></td>
-					<th class="referenced">
-						PlayerManager 
-											</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">GridSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1526,6 +1991,7 @@
 					<td class="R"></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="X"></td>
@@ -1537,15 +2003,28 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">IndexedPositionUpdateSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1572,32 +2051,31 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class="R"></td>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
-					<th class="referenced">
-						NearestNeighborsRenderSystem 
-											</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">MaxVelocityAccelerationSystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class="R"></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="R"></td>
-					<td class=""></td>
+					<td class="R separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1612,15 +2090,43 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="R"></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">PositionUpdateSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1638,6 +2144,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1649,15 +2156,28 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<td class="X"></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">SpritePositionUpdateSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1675,6 +2195,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1686,25 +2207,38 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ThrustComputerSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class="O"></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1713,6 +2247,7 @@
 					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="O"></td>
 					<td class="O"></td>
 					<td class=""></td>
@@ -1723,17 +2258,28 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<th class="referenced">
-						PushPullManager 
-											</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">ThrustVelocitySystem
 						<i class="icon-gear"></i>
 					</th>
-					<td class=""></td>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1744,6 +2290,8 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class="R"></td>
+					<td class=""></td>
+					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1761,15 +2309,28 @@
 					<td class="O"></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
 					<th class="horizontal" style="padding-right: 5px;">VelocityLimiterSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1796,11 +2357,24 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=""></td>
 					<td class="R"></td>
 					<td class=""></td>
-					<th class="referenced">
-					</th>
-					<th class="referenced">
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
 					</th>
 				</tr>
 				<tr class="systems">
@@ -1810,6 +2384,18 @@
 					<th class="horizontal" style="padding-right: 5px;">UiDebugSystem
 						<i class="icon-gear"></i>
 					</th>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1828,6 +2414,14 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
+					<td class=" separator"></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class=""></td>
+					<td class="O"></td>
+					<td class="O separator"></td>
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
@@ -1835,16 +2429,7 @@
 					<td class=""></td>
 					<td class=""></td>
 					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<td class=""></td>
-					<th class="referenced">
-						EntityFactoryManager 
-												TagManager 
-											</th>
-					<th class="referenced">
-						EventSystem 
-											</th>
+					</th>
 				</tr>
 			<tbody>
 		</table>
@@ -1858,7 +2443,7 @@
 				<td class="A"></td>
 			</tr>
 			<tr class="systems">
-				<th class="horizontal" style="padding-right: 10px;">Optional</th>
+				<th class="horizontal" style="padding-right: 10px;">Referenced</th>
 				<td class="O"></td>
 			</tr>
 			<tr class="systems">
