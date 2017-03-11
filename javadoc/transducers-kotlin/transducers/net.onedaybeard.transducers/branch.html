@@ -13,13 +13,14 @@
 <p>Returns a branching transducer, routing each input through
 either <a href="branch.html#net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/xfTrue">xfTrue</a> or <a href="branch.html#net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/xfFalse">xfFalse</a>, depending on the value returned
 by <a href="branch.html#net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/test">test</a>.</p>
-<pre><code class="lang-kotlin">intoList(xf = branch(test = { it % 4 == 0 },
+<pre><code class="lang-kotlin">intoList(xf = copy&lt;Int&gt;() +
+              branch(test = { it % 4 == 0 },
                      xfTrue  = map { i: Int -&gt; i * 100 },
                      xfFalse = map { i: Int -&gt; i / 4 } +
                                distinct() +
                                map(Int::toString)),
          input = (1..9)
-) assertEquals listOf("0", 400, "1", 800, "2")</code></pre>
+) assertEquals listOf("0", 400, 400, "1", 800, 800, "2")</code></pre>
 <p><strong>See Also</strong><br/>
 <p><a href="mux.html">mux</a></p>
 </p>
