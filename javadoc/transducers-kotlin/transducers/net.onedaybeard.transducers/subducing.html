@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>subducing - transducers</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">transducers</a>&nbsp;/&nbsp;<a href="index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">subducing</a><br/>
+<br/>
+<h1>subducing</h1>
+
+<p><a name="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="keyword">reified</span>&nbsp;<span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">subducing</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-rf.html"><span class="identifier">Rf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/experimental.kt">(source)</a>
+<p>Returns a specialized <a href="-reducing-function/index.html">ReducingFunction</a> for <a href="subducing.html#net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)))/xf">xf</a>, treating each
+input as a full transducible process - invoking each of the
+three <a href="-reducing-function/apply.html">ReducingFunction.apply</a> functions once.</p>
+<p>An initial result is computed based on the type of <a href="#">A</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="subduce.html">subduce</a></p>
+</p>
+
+<p><a name="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)), kotlin.Function0((net.onedaybeard.transducers.subducing.A)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="keyword">reified</span>&nbsp;<span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">subducing</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)), kotlin.Function0((net.onedaybeard.transducers.subducing.A)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="keyword">crossinline</span> <span class="identifier" id="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)), kotlin.Function0((net.onedaybeard.transducers.subducing.A)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span><span class="symbol">: </span><a href="-rf.html"><span class="identifier">Rf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/experimental.kt">(source)</a>
+<p>Returns a specialized <a href="-reducing-function/index.html">ReducingFunction</a>, treating each
+input as a full transducible process - invoking each of the
+three <a href="-reducing-function/apply.html">ReducingFunction.apply</a> functions once.</p>
+<p>Initial result supplied by <a href="subducing.html#net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)), kotlin.Function0((net.onedaybeard.transducers.subducing.A)))/init">init</a>, invoked once during
+initialization.</p>
+</BODY>
+</HTML>

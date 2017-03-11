@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>reducePair - transducers</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">transducers</a>&nbsp;/&nbsp;<a href="index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">reducePair</a><br/>
+<br/>
+<h1>reducePair</h1>
+<a name="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">F</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">reducePair</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/f">f</span><span class="symbol">:</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/result">result</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">,</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/reduced">reduced</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicBoolean.html"><span class="identifier">AtomicBoolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;AtomicBoolean()<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/experimental.kt">(source)</a>
+<p>Applies given reducing function to current result and each T in input, using
+the result returned from each reduction step as input to the next step. Returns
+final result.</p>
+<h3>Parameters</h3>
+
+<p><a name="f"></a>
+<code>f</code> - a reducing function
+<p><a name="result"></a>
+<code>result</code> - an initial result value
+<p><a name="input"></a>
+<code>input</code> - the input to process
+<p><a name="reduced"></a>
+<code>reduced</code> - a boolean flag that can be set to indicate that the reducing process
+    should stop, even though there is still input to process
+<p><strong>Parameters</strong><br/>
+</p>
+<p><strong>Parameters</strong><br/>
+</p>
+<p><strong>Return</strong><br/>
+the final reduced result</p>
+</BODY>
+</HTML>
