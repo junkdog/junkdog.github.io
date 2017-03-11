@@ -1,0 +1,527 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>net.onedaybeard.transducers - transducers</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">transducers</a>&nbsp;/&nbsp;<a href=".">net.onedaybeard.transducers</a><br/>
+<br/>
+<h2>Package net.onedaybeard.transducers</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-dummy/index.html">Dummy</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Dummy</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="-experimental-transducers-test/index.html">ExperimentalTransducersTest</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ExperimentalTransducersTest</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="-reducing-function/index.html">ReducingFunction</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ReducingFunction</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="keyword">in</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-step-function/index.html"><span class="identifier">StepFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>A complete reducing function. Extends a single reducing step
+function and adds a zero-arity function for initializing a new
+result and a single-arity function for processing the final
+result after the reduction process has completed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-reducing-function-on/index.html">ReducingFunctionOn</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ReducingFunctionOn</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="keyword">in</span>&nbsp;<span class="identifier">A</span><span class="symbol">, </span><span class="keyword">in</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Abstract base class for implementing a reducing function that chains to
+another reducing function. Zero-arity and single-arity overloads of apply
+delegate to the chained reducing function. Derived classes must implement
+the three-arity overload of apply, and may implement either of the other
+two overloads as required.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-signal/index.html">Signal</a></td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Signal</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Conditional transducer, primarily useful for branching transducers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-step-function/index.html">StepFunction</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">StepFunction</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="keyword">in</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>A reducing step function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-transducer/index.html">Transducer</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">B</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>A Transducer transforms a reducing function of one type into a
+reducing function of another (possibly the same) type, applying
+mapping, filtering, flattening, etc. logic as desired.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-transducers-test/index.html">TransducersTest</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TransducersTest</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-rf.html">Rf</a></td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">Rf</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="-rf-on.html">RfOn</a></td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">RfOn</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-reducing-function-on/index.html"><span class="identifier">ReducingFunctionOn</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="-xf.html">Xf</a></td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">Xf</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="kotlin.-function1/index.html">kotlin.Function1</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="kotlin.collections.-mutable-list/index.html">kotlin.collections.MutableList</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="kotlin.collections.-mutable-set/index.html">kotlin.collections.MutableSet</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="assert-completion-sanity.html">assertCompletionSanity</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">assertCompletionSanity</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$assertCompletionSanity(kotlin.String, kotlin.Boolean)/tag">tag</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$assertCompletionSanity(kotlin.String, kotlin.Boolean)/resettable">resettable</span><span class="symbol">:</span>&nbsp;<span class="identifier">Boolean</span>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="assert-equals.html">assertEquals</a></td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">assertEquals</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$assertEquals(net.onedaybeard.transducers.assertEquals.T, net.onedaybeard.transducers.assertEquals.T)/expected">expected</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="branch.html">branch</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">branch</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/test">test</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/xfTrue">xfTrue</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/xfFalse">xfFalse</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Returns a branching transducer, routing each input through
+either <a href="branch.html#net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/xfTrue">xfTrue</a> or <a href="branch.html#net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/xfFalse">xfFalse</a>, depending on the value returned
+by <a href="branch.html#net.onedaybeard.transducers$branch(kotlin.Function1((net.onedaybeard.transducers.branch.B, kotlin.Boolean)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.branch.A, net.onedaybeard.transducers.branch.B)))/test">test</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="cat.html">cat</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">cat</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function by accepting
+an iterable of the expected input type and reducing it</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="collect.html">collect</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">collect</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/collector">collector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">MutableCollection</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;{ mutableListOf&lt;A&gt;() }<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/sort">sort</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer consuming all input, and then releases the
+input as an <a href="#">Iterable</a> collection.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">collect</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/collector">collector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">MutableCollection</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;{ mutableListOf&lt;A&gt;() }<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/sort">sort</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer consuming all input, before releasing the
+accumulated input as an <a href="#">Iterable</a> collection.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="completing.html">completing</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">completing</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$completing(net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.completing.R, net.onedaybeard.transducers.completing.T)))/sf">sf</span><span class="symbol">:</span>&nbsp;<a href="-step-function/index.html"><span class="identifier">StepFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Takes a step function and turns it into a reducing function. If</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="compose.html">compose</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span> <span class="identifier">compose</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$compose(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.compose.B, net.onedaybeard.transducers.compose.C)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.compose.A, net.onedaybeard.transducers.compose.B)))/left">left</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$compose(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.compose.B, net.onedaybeard.transducers.compose.C)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.compose.A, net.onedaybeard.transducers.compose.B)))/right">right</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>Composes a transducer with another transducer, yielding a new transducer that</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="copy.html">copy</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">copy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="count.html">count</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">count</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">Int</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer counting the number of input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="debug.html">debug</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">debug</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$debug(kotlin.String, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$debug(kotlin.String, kotlin.Int)/indent">indent</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Returns a debug-assisting transducer. This transducer
+prints each input, and the initial plus final results.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="dedupe.html">dedupe</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">dedupe</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+consecutive identical input values are removed, only a single value
+is processed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="distinct.html">distinct</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">distinct</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="drop.html">drop</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">drop</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$drop(kotlin.Int)/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+it skips n inputs, then processes the rest of the inputs.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="drop-while.html">dropWhile</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">dropWhile</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$dropWhile(kotlin.Function1((net.onedaybeard.transducers.dropWhile.A, kotlin.Boolean)))/p">p</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+it skips inputs as long as the provided predicate returns true.
+Once the predicate returns false, the rest of the inputs are
+processed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="filter.html">filter</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">filter</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$filter(kotlin.Function1((net.onedaybeard.transducers.filter.A, kotlin.Boolean)))/p">p</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function by applying a
+predicate to each input and processing only those inputs for which the
+predicate is true.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="health-inspector.html">healthInspector</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">healthInspector</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$healthInspector(kotlin.String, kotlin.Int)/tag">tag</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$healthInspector(kotlin.String, kotlin.Int)/indent">indent</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="into-list.html">intoList</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">MutableList</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">intoList</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$intoList(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.intoList.A, net.onedaybeard.transducers.intoList.B)), net.onedaybeard.transducers.intoList.R, kotlin.collections.Iterable((net.onedaybeard.transducers.intoList.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$intoList(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.intoList.A, net.onedaybeard.transducers.intoList.B)), net.onedaybeard.transducers.intoList.R, kotlin.collections.Iterable((net.onedaybeard.transducers.intoList.B)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span>&nbsp;<span class="symbol">=</span>&nbsp;mutableListOf&lt;A&gt;() as R<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$intoList(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.intoList.A, net.onedaybeard.transducers.intoList.B)), net.onedaybeard.transducers.intoList.R, kotlin.collections.Iterable((net.onedaybeard.transducers.intoList.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="into-set.html">intoSet</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">MutableSet</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">intoSet</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$intoSet(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.intoSet.A, net.onedaybeard.transducers.intoSet.B)), net.onedaybeard.transducers.intoSet.R, kotlin.collections.Iterable((net.onedaybeard.transducers.intoSet.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$intoSet(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.intoSet.A, net.onedaybeard.transducers.intoSet.B)), net.onedaybeard.transducers.intoSet.R, kotlin.collections.Iterable((net.onedaybeard.transducers.intoSet.B)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span>&nbsp;<span class="symbol">=</span>&nbsp;mutableSetOf&lt;A&gt;() as R<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$intoSet(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.intoSet.A, net.onedaybeard.transducers.intoSet.B)), net.onedaybeard.transducers.intoSet.R, kotlin.collections.Iterable((net.onedaybeard.transducers.intoSet.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="keep.html">keep</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">keep</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$keep(kotlin.Function1((net.onedaybeard.transducers.keep.A, net.onedaybeard.transducers.keep.A)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">A</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function by applying a
+function to each input and processing the resulting value, ignoring values
+that are null.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="keep-indexed.html">keepIndexed</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">keepIndexed</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$keepIndexed(kotlin.Function2((kotlin.Int, net.onedaybeard.transducers.keepIndexed.A, net.onedaybeard.transducers.keepIndexed.A)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">Int</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">A</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function by applying a
+function to each input and processing the resulting value, ignoring values
+that are null.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="map.html">map</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$map(kotlin.Function1((net.onedaybeard.transducers.map.B, net.onedaybeard.transducers.map.A)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function by applying a mapping
+function to each input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="map-pair.html">mapPair</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">, </span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">mapPair</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$mapPair(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.K, net.onedaybeard.transducers.mapPair.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.V, net.onedaybeard.transducers.mapPair.B)))/l">l</span><span class="symbol">:</span>&nbsp;<a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$mapPair(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.K, net.onedaybeard.transducers.mapPair.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.V, net.onedaybeard.transducers.mapPair.B)))/r">r</span><span class="symbol">:</span>&nbsp;<a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer creating <a href="#">Pair</a>s, with values provided
+via transducers <a href="map-pair.html#net.onedaybeard.transducers$mapPair(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.K, net.onedaybeard.transducers.mapPair.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.V, net.onedaybeard.transducers.mapPair.B)))/l">l</a> and <a href="map-pair.html#net.onedaybeard.transducers$mapPair(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.K, net.onedaybeard.transducers.mapPair.B)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.mapPair.V, net.onedaybeard.transducers.mapPair.B)))/r">r</a>. Each value transducer runs a full
+transducible process/lifecycle per input, allowing for
+more sophisticated transducers at the cost of performance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="mapcat.html">mapcat</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span> <span class="identifier">mapcat</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$mapcat(kotlin.Function1((net.onedaybeard.transducers.mapcat.C, net.onedaybeard.transducers.mapcat.B)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">C</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">B</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function using
+a composition of map and cat.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="mux.html">mux</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">mux</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="net.onedaybeard.transducers$mux(kotlin.Array((net.onedaybeard.transducers.Signal((net.onedaybeard.transducers.mux.A, net.onedaybeard.transducers.mux.B)))), kotlin.Boolean)/xfs">xfs</span><span class="symbol">:</span>&nbsp;<a href="-signal/index.html"><span class="identifier">Signal</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$mux(kotlin.Array((net.onedaybeard.transducers.Signal((net.onedaybeard.transducers.mux.A, net.onedaybeard.transducers.mux.B)))), kotlin.Boolean)/promiscuous">promiscuous</span><span class="symbol">:</span>&nbsp;<span class="identifier">Boolean</span>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Returns a multiplexing transducer, routing input through different
+transducers. Transducer route is selected based on the outcome of
+<a href="-signal/selector.html">Signal.selector</a>, evaluated in sequential order. Unmatched input
+are discarded.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="pair-cat.html">pairCat</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">pairCat</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">,</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer concatenating pairs of <code>Pair&lt;A, Iterable&lt;B&gt;&gt;</code> into
+<code>Pair&lt;A, B&gt;</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="partition-all.html">partitionAll</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">partitionAll</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$partitionAll(kotlin.Int)/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function that processes
+iterables of input into a reducing function that processes individual inputs
+by gathering series of inputs into partitions of a given size, only forwarding
+them to the next reducing function when enough inputs have been accrued. Processes
+any remaining buffered inputs when the reducing process completes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="partition-by.html">partitionBy</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">P</span><span class="symbol">&gt;</span> <span class="identifier">partitionBy</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$partitionBy(kotlin.Function1((net.onedaybeard.transducers.partitionBy.A, net.onedaybeard.transducers.partitionBy.P)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">P</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function that processes
+iterables of input into a reducing function that processes individual inputs
+by gathering series of inputs for which the provided partitioning function returns
+the same value, only forwarding them to the next reducing function when the value
+the partitioning function returns for a given input is different from the value
+returned for the previous input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="plus.html">plus</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span> <a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$plus(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.plus.B, net.onedaybeard.transducers.plus.C)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.plus.A, net.onedaybeard.transducers.plus.B)))/right">right</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="keyword">in</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="random-sample.html">randomSample</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">randomSample</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$randomSample(kotlin.Double)/prob">prob</span><span class="symbol">:</span>&nbsp;<span class="identifier">Double</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+it has the specified probability of processing each input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="reduce.html">reduce</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">reduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$reduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reduce.R, net.onedaybeard.transducers.reduce.T)), net.onedaybeard.transducers.reduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.reduce.T)), java.util.concurrent.atomic.AtomicBoolean, kotlin.Boolean)/f">f</span><span class="symbol">:</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reduce.R, net.onedaybeard.transducers.reduce.T)), net.onedaybeard.transducers.reduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.reduce.T)), java.util.concurrent.atomic.AtomicBoolean, kotlin.Boolean)/result">result</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reduce.R, net.onedaybeard.transducers.reduce.T)), net.onedaybeard.transducers.reduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.reduce.T)), java.util.concurrent.atomic.AtomicBoolean, kotlin.Boolean)/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reduce.R, net.onedaybeard.transducers.reduce.T)), net.onedaybeard.transducers.reduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.reduce.T)), java.util.concurrent.atomic.AtomicBoolean, kotlin.Boolean)/reduced">reduced</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicBoolean.html"><span class="identifier">AtomicBoolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;AtomicBoolean()<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reduce.R, net.onedaybeard.transducers.reduce.T)), net.onedaybeard.transducers.reduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.reduce.T)), java.util.concurrent.atomic.AtomicBoolean, kotlin.Boolean)/completing">completing</span><span class="symbol">:</span>&nbsp;<span class="identifier">Boolean</span>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Applies given reducing function to current result and each T in input, using
+the result returned from each reduction step as input to the next step. Returns
+final result.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="reduce-pair.html">reducePair</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">F</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">reducePair</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/f">f</span><span class="symbol">:</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/result">result</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">,</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$reducePair(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, net.onedaybeard.transducers.reducePair.T)))), net.onedaybeard.transducers.reducePair.R, kotlin.Pair((net.onedaybeard.transducers.reducePair.F, kotlin.collections.Iterable((net.onedaybeard.transducers.reducePair.T)))), java.util.concurrent.atomic.AtomicBoolean)/reduced">reduced</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicBoolean.html"><span class="identifier">AtomicBoolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;AtomicBoolean()<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Applies given reducing function to current result and each T in input, using
+the result returned from each reduction step as input to the next step. Returns
+final result.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="remove.html">remove</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$remove(kotlin.Function1((net.onedaybeard.transducers.remove.A, kotlin.Boolean)))/p">p</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function by applying a
+predicate to each input and not processing those inputs for which the
+predicate is true.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="replace.html">replace</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">replace</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$replace(kotlin.collections.Map((net.onedaybeard.transducers.replace.A, )))/smap">smap</span><span class="symbol">:</span>&nbsp;<span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+inputs that are keys in the provided map are replaced by the corresponding
+value in the map.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="result-gate.html">resultGate</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">resultGate</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$resultGate(kotlin.Int)/count">count</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer ensuring <emph>completion</emph> is calculated once, used
+by <a href="branch.html">branch</a>ing/<a href="mux.html">mux</a>ing transducers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sort.html">sort</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">sort</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$sort(kotlin.Function2((net.onedaybeard.transducers.sort.A, , kotlin.Int)))/sort">sort</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">o1</span><span class="symbol">:</span>&nbsp;<span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">o2</span><span class="symbol">:</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Returns a transducer collecting all input, before releasing
+each element in sorted order.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="subduce.html">subduce</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">subduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$subduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.subduce.A, net.onedaybeard.transducers.subduce.B)), net.onedaybeard.transducers.subduce.B, java.util.concurrent.atomic.AtomicBoolean)/rf">rf</span><span class="symbol">:</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$subduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.subduce.A, net.onedaybeard.transducers.subduce.B)), net.onedaybeard.transducers.subduce.B, java.util.concurrent.atomic.AtomicBoolean)/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">B</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$subduce(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.subduce.A, net.onedaybeard.transducers.subduce.B)), net.onedaybeard.transducers.subduce.B, java.util.concurrent.atomic.AtomicBoolean)/reduced">reduced</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicBoolean.html"><span class="identifier">AtomicBoolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;AtomicBoolean()<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">A</span></code>
+<p>Performs a full transduction on a single input. Typically,
+used in conjunction with <a href="subduce.html">subduce</a>. Useful for construction
+of pairs, tuples and similar data structures - using
+separate transducers per field.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="subducing.html">subducing</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">subducing</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="-rf.html"><span class="identifier">Rf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Returns a specialized <a href="-reducing-function/index.html">ReducingFunction</a> for <a href="subducing.html#net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)))/xf">xf</a>, treating each
+input as a full transducible process - invoking each of the
+three <a href="-reducing-function/apply.html">ReducingFunction.apply</a> functions once.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">subducing</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)), kotlin.Function0((net.onedaybeard.transducers.subducing.A)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$subducing(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.subducing.A, net.onedaybeard.transducers.subducing.B)), kotlin.Function0((net.onedaybeard.transducers.subducing.A)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span><span class="symbol">: </span><a href="-rf.html"><span class="identifier">Rf</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Returns a specialized <a href="-reducing-function/index.html">ReducingFunction</a>, treating each
+input as a full transducible process - invoking each of the
+three <a href="-reducing-function/apply.html">ReducingFunction.apply</a> functions once.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="sum.html">sum</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Number</span><span class="symbol">&gt;</span> <span class="identifier">sum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Calculates sum of all input.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Number</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">sum</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$sum(kotlin.Function1((net.onedaybeard.transducers.sum.B, net.onedaybeard.transducers.sum.A)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">b</span><span class="symbol">:</span>&nbsp;<span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code>
+<p>Calculates sum based on values produced by <a href="sum.html#net.onedaybeard.transducers$sum(kotlin.Function1((net.onedaybeard.transducers.sum.B, net.onedaybeard.transducers.sum.A)))/f">f</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="take.html">take</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">take</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$take(kotlin.Int)/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+it only processes n inputs, then the reducing process stops.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="take-nth.html">takeNth</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">takeNth</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$takeNth(kotlin.Int)/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+it processes every nth input.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="take-while.html">takeWhile</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">takeWhile</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$takeWhile(kotlin.Function1((net.onedaybeard.transducers.takeWhile.A, kotlin.Boolean)))/p">p</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Creates a transducer that transforms a reducing function such that
+it processes inputs as long as the provided predicate returns true.
+If the predicate returns false, the reducing process stops.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="transduce.html">transduce</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">transduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/rf">rf</span><span class="symbol">:</span>&nbsp;<a href="-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Reduces input using transformed reducing function. Transforms reducing function by applying
+transducer. Reducing function must implement zero-arity apply that returns initial result
+to start reducing process.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">transduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/rf">rf</span><span class="symbol">:</span>&nbsp;<a href="-step-function/index.html"><span class="identifier">StepFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Reduces input using transformed reducing function. Transforms reducing function by applying
+transducer. Step function is converted to reducing function if necessary. Accepts initial value
+for reducing process as argument.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">transduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/rf">rf</span><span class="symbol">:</span>&nbsp;<a href="-step-function/index.html"><span class="identifier">StepFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), net.onedaybeard.transducers.StepFunction((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A)), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Sequence</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">transduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/rf">rf</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.collections.Iterable((net.onedaybeard.transducers.transduce.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code><br/>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">transduce</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/xf">xf</span><span class="symbol">:</span>&nbsp;<a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/rf">rf</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/init">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$transduce(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.transduce.A, net.onedaybeard.transducers.transduce.B)), kotlin.Function2((net.onedaybeard.transducers.transduce.R, net.onedaybeard.transducers.transduce.A, )), net.onedaybeard.transducers.transduce.R, kotlin.sequences.Sequence((net.onedaybeard.transducers.transduce.B)))/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">Sequence</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

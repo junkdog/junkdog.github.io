@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>mux - transducers</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">transducers</a>&nbsp;/&nbsp;<a href="index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">mux</a><br/>
+<br/>
+<h1>mux</h1>
+<a name="net.onedaybeard.transducers$mux(kotlin.Array((net.onedaybeard.transducers.Signal((net.onedaybeard.transducers.mux.A, net.onedaybeard.transducers.mux.B)))), kotlin.Boolean)"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">&gt;</span> <span class="identifier">mux</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="net.onedaybeard.transducers$mux(kotlin.Array((net.onedaybeard.transducers.Signal((net.onedaybeard.transducers.mux.A, net.onedaybeard.transducers.mux.B)))), kotlin.Boolean)/xfs">xfs</span><span class="symbol">:</span>&nbsp;<a href="-signal/index.html"><span class="identifier">Signal</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$mux(kotlin.Array((net.onedaybeard.transducers.Signal((net.onedaybeard.transducers.mux.A, net.onedaybeard.transducers.mux.B)))), kotlin.Boolean)/promiscuous">promiscuous</span><span class="symbol">:</span>&nbsp;<span class="identifier">Boolean</span>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/experimental.kt">(source)</a>
+<p>Returns a multiplexing transducer, routing input through different
+transducers. Transducer route is selected based on the outcome of
+<a href="-signal/selector.html">Signal.selector</a>, evaluated in sequential order. Unmatched input
+are discarded.</p>
+<p>Per default, each input is associated with at most <emph>one</emph> transducer
+route. If <a href="mux.html#net.onedaybeard.transducers$mux(kotlin.Array((net.onedaybeard.transducers.Signal((net.onedaybeard.transducers.mux.A, net.onedaybeard.transducers.mux.B)))), kotlin.Boolean)/promiscuous">promiscuous</a> is <code>true</code>, input passes through every
+matching transducer.</p>
+<p>When all input has been exhausted, each route processes the final
+result. Subsequent transducers are <a href="result-gate.html">guarded</a> against
+multiple invocations of <code>ReducingFunction::apply(result)</code>.</p>
+<pre><code>      &lt;A,B&gt;         &lt;B,C&gt;           (&lt;B,C&gt;)          &lt;C,D&gt;
+                                   +-------+
+                               +--&gt;+ Xf 3a +---+
+                               |   +-------+   |
+                               |               |
+    +-------+     +-------+    |   +-------+   |   +-------+
+    | Xf 1  +----&gt;+  mux  +-------&gt;+ Xf 3b +------&gt;+ Xf 4  |
+    +-------+     +-------+    |   +-------+   |   +-------+
+                               |               |
+                               |   +-------+   |
+                               +--&gt;+ Xf 3c +---+
+                                   +-------+</code></pre>
+<p>Depicted transducers <code>3a</code>, <code>3b</code> and <code>3c</code> may be composed of one or more
+transducers, and can produce zero or many outputs per input value.
+Transducer signature is the same for each route, as given by mux.</p>
+<pre><code class="lang-kotlin">intoList(xf = mux(isEven@ // labels only for readability
+                  { i: Int -&gt; i % 2 == 0 }
+                          wires map { i: Int -&gt; i * 100 } +
+                                filter { it != 400 },
+                  leetify@
+                  { i: Int -&gt; i == 3 }
+                          wires map { _: Int -&gt; 1337 } +
+                                collect() + // releases on final result
+                                cat()),
+         input = (0..9)
+) assertEquals listOf(0, 200, 600, 800, 1337)</code></pre><pre><code class="lang-kotlin">// promiscuous = true: input goes through all applicable transducers
+intoList(xf = mux({ i: Int -&gt; i % 1 == 0 }
+                          wires map { i: Int -&gt; i / 2 } +
+                                distinct(),
+                  { i: Int -&gt; i % 2 == 0 }
+                          wires map { it },
+                  { i: Int -&gt; i % 3 == 0 }
+                          wires map { i: Int -&gt; i * 100 } +
+                                copy(),
+                  promiscuous = true),
+         input = (0..6)
+) assertEquals listOf(0, 0, 0, 0,     // input: 0
+                                      // input: 1
+                      1, 2,           // input: 2
+                      300, 300,       // input: 3
+                      2, 4,           // input: 4
+                                      // input: 5
+                      3, 6, 600, 600) // input: 6</code></pre>
+</BODY>
+</HTML>

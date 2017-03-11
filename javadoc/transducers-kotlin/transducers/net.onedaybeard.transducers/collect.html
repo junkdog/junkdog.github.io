@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>collect - transducers</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">transducers</a>&nbsp;/&nbsp;<a href="index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">collect</a><br/>
+<br/>
+<h1>collect</h1>
+
+<p><a name="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">collect</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/collector">collector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">MutableCollection</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;{ mutableListOf&lt;A&gt;() }<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/sort">sort</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="-xf.html"><span class="identifier">Xf</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/experimental.kt">(source)</a>
+<p>Returns a transducer consuming all input, and then releases the
+input as an <a href="#">Iterable</a> collection.</p>
+<p>The transducer collects into a list by default, can be changed by
+supplying another <a href="collect.html#net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/collector">collector</a>. <a href="collect.html#net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/collector">collector</a> is reset after producing the
+final result.</p>
+<p><a href="collect.html#net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), kotlin.Function2((net.onedaybeard.transducers.collect.A, , kotlin.Int)))/sort">sort</a> may change the type of underlying collection. This implies allocation.</p>
+<pre><code class="lang-kotlin">// using collect for sorting input
+transduce(xf = map { i: Int -&gt; i / 3 } +
+               distinct() +
+               collect(sort = { a, b -&gt; a.compareTo(b) * -1 }),
+          rf = { _, input -&gt; input.toList() },
+          init = listOf&lt;Int&gt;(),
+          input = (0..20)
+) assertEquals listOf(6, 5, 4, 3, 2, 1, 0)</code></pre><pre><code class="lang-kotlin">// collecting into a set, releasing sorted input
+transduce(xf = map { i: Int -&gt; i / 3 } +
+               collect(sort = { a, b -&gt; a.compareTo(b) * -1 },
+                       collector = { mutableSetOf&lt;Int&gt;() }),
+          rf = { _, input -&gt; input.toList() },
+          init = listOf&lt;Int&gt;(),
+          input = (0..20)
+) assertEquals listOf(6, 5, 4, 3, 2, 1, 0)</code></pre>
+<p><a name="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">collect</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/collector">collector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">MutableCollection</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;{ mutableListOf&lt;A&gt;() }<span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/sort">sort</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/experimental.kt">(source)</a>
+<p>Returns a transducer consuming all input, before releasing the
+accumulated input as an <a href="#">Iterable</a> collection.</p>
+<p>The transducer collects into a list by default; this can be changed by
+supplying another <a href="collect.html#net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/collector">collector</a>. <a href="collect.html#net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/collector">collector</a> is reset after producing the
+final result.</p>
+<p><a href="collect.html#net.onedaybeard.transducers$collect(kotlin.Function0((kotlin.collections.MutableCollection((net.onedaybeard.transducers.collect.A)))), java.util.Comparator((net.onedaybeard.transducers.collect.A)))/sort">sort</a> may change the type of underlying collection. This implies allocation.</p>
+</BODY>
+</HTML>

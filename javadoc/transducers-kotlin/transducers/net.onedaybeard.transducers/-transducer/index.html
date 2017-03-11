@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Transducer - transducers</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">transducers</a>&nbsp;/&nbsp;<a href="../index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">Transducer</a><br/>
+<br/>
+<h1>Transducer</h1>
+<code><span class="keyword">interface </span><span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">B</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/Transducers.kt">(source)</a>
+<p>A Transducer transforms a reducing function of one type into a
+reducing function of another (possibly the same) type, applying
+mapping, filtering, flattening, etc. logic as desired.</p>
+<h3>Parameters</h3>
+
+<p><a name="B"></a>
+<code>B</code> - The type of data processed by an input process
+<p><a name="C"></a>
+<code>C</code> - The type of data processed by the transduced process
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="apply.html">apply</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">apply</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers.Transducer$apply(net.onedaybeard.transducers.ReducingFunction((net.onedaybeard.transducers.Transducer.apply.R, net.onedaybeard.transducers.Transducer.B)))/rf">rf</span><span class="symbol">:</span>&nbsp;<a href="../-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-reducing-function/index.html"><span class="identifier">ReducingFunction</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>Transforms a reducing function of B into a reducing function
+of C.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="comp.html">comp</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span> <span class="identifier">comp</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers.Transducer$comp(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.Transducer.comp.A, net.onedaybeard.transducers.Transducer.B)))/right">right</span><span class="symbol">:</span>&nbsp;<span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="keyword">in</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>Composes a transducer with another transducer, yielding
+a new transducer.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../plus.html">plus</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span> <span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="identifier">B</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$plus(net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.plus.B, net.onedaybeard.transducers.plus.C)), net.onedaybeard.transducers.Transducer((net.onedaybeard.transducers.plus.A, net.onedaybeard.transducers.plus.B)))/right">right</span><span class="symbol">:</span>&nbsp;<span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="keyword">in</span>&nbsp;<span class="identifier">B</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Transducer</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
