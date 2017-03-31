@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>partitionBy - transducers-0.4.0</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">transducers-0.4.0</a>&nbsp;/&nbsp;<a href="index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">partitionBy</a><br/>
+<br/>
+<h1>partitionBy</h1>
+<a name="net.onedaybeard.transducers$partitionBy(kotlin.Function1((net.onedaybeard.transducers.partitionBy.A, net.onedaybeard.transducers.partitionBy.P)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">P</span><span class="symbol">&gt;</span> <span class="identifier">partitionBy</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers$partitionBy(kotlin.Function1((net.onedaybeard.transducers.partitionBy.A, net.onedaybeard.transducers.partitionBy.P)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">P</span><span class="symbol">)</span><span class="symbol">: </span><a href="-transducer/index.html"><span class="identifier">Transducer</span></a><span class="symbol">&lt;</span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">A</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/Transducers.kt">(source)</a>
+<p>Creates a transducer that transforms a reducing function that processes
+iterables of input into a reducing function that processes individual inputs
+by gathering series of inputs for which the provided partitioning function returns
+the same value, only forwarding them to the next reducing function when the value
+the partitioning function returns for a given input is different from the value
+returned for the previous input.</p>
+<h3>Parameters</h3>
+
+<p><a name="f"></a>
+<code>f</code> - the partitioning function
+<p><a name="A"></a>
+<code>A</code> - the input type of the input and output reducing functions
+<p><a name="P"></a>
+<code>P</code> - the type returned by the partitioning function
+<p><strong>Return</strong><br/>
+a new transducer</p>
+</BODY>
+</HTML>

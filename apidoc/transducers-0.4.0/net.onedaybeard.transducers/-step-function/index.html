@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>StepFunction - transducers-0.4.0</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">transducers-0.4.0</a>&nbsp;/&nbsp;<a href="../index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href=".">StepFunction</a><br/>
+<br/>
+<h1>StepFunction</h1>
+<code><span class="keyword">interface </span><span class="identifier">StepFunction</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="keyword">in</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/Transducers.kt">(source)</a>
+<p>A reducing step function.</p>
+<h3>Parameters</h3>
+
+<p><a name="R"></a>
+<code>R</code> - Type of first argument and return value
+<p><a name="T"></a>
+<code>T</code> - Type of input to reduce
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="apply.html">apply</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">apply</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)/result">result</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)/reduced">reduced</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicBoolean.html"><span class="identifier">AtomicBoolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Applies the reducing function to the current result and
+the new input, returning a new result.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../-reducing-function/index.html">ReducingFunction</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ReducingFunction</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="keyword">in</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">StepFunction</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>A complete reducing function. Extends a single reducing step
+function and adds a zero-arity function for initializing a new
+result and a single-arity function for processing the final
+result after the reduction process has completed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>StepFunction.apply - transducers-0.4.0</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">transducers-0.4.0</a>&nbsp;/&nbsp;<a href="../index.html">net.onedaybeard.transducers</a>&nbsp;/&nbsp;<a href="index.html">StepFunction</a>&nbsp;/&nbsp;<a href=".">apply</a><br/>
+<br/>
+<h1>apply</h1>
+<a name="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">apply</span><span class="symbol">(</span><span class="identifier" id="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)/result">result</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)/input">input</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">, </span><span class="identifier" id="net.onedaybeard.transducers.StepFunction$apply(net.onedaybeard.transducers.StepFunction.R, net.onedaybeard.transducers.StepFunction.T, java.util.concurrent.atomic.AtomicBoolean)/reduced">reduced</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicBoolean.html"><span class="identifier">AtomicBoolean</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code> <a href="https://github.com/junkdog/transducers-kotlin/blob/master/src/main/kotlin/net/onedaybeard/transducers/Transducers.kt">(source)</a>
+<p>Applies the reducing function to the current result and
+the new input, returning a new result.</p>
+<p>A reducing function can indicate that no more input
+should be processed by setting the value of reduced to
+true. This causes the reduction process to complete,
+returning the most recent result.</p>
+<h3>Parameters</h3>
+
+<p><a name="result"></a>
+<code>result</code> - The current result value
+<p><a name="input"></a>
+<code>input</code> - New input to process
+<p><a name="reduced"></a>
+<code>reduced</code> - A boolean value which can be set to true
+    to stop the reduction process
+<p><strong>Return</strong><br/>
+A new result value</p>
+</BODY>
+</HTML>
